@@ -1,2 +1,16 @@
 # Bunpine
 Alpine 🫶 Bun
+
+```shell
+# Install latest
+wget -O - "https://raw.githubusercontent.com/alxivnov/Bunpine/main/install.sh" | sh
+# Install only glibc
+wget -O - "https://raw.githubusercontent.com/alxivnov/Bunpine/main/install.sh" | sh -s "only-glibc"
+# Install without glibc
+wget -O - "https://raw.githubusercontent.com/alxivnov/Bunpine/main/install.sh" | sh -s "skip-glibc"
+# Install specific version
+wget -O - "https://raw.githubusercontent.com/alxivnov/Bunpine/main/install.sh" | sh -s "1.1.0"
+# Install debug build
+wget -O - "https://raw.githubusercontent.com/alxivnov/Bunpine/main/install.sh" | sh -s "1.1.0" "debug-info"
+wget -O - "https://raw.githubusercontent.com/alxivnov/Bunpine/main/install.sh" | sh -s "1.1.0" "profile"
+```
