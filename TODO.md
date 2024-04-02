@@ -1,5 +1,5 @@
-* Split glibc
-* Add upx
-* Make debug-info/profile non-positional
-* Add uninstall option
-* Rename specific version
+- [x] Add upx
+- [ ] Split glibc
+- [ ] Make debug-info/profile non-positional
+- [ ] Add uninstall option
+- [ ] Rename specific version

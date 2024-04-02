@@ -67,6 +67,13 @@ fi
 	echo $bun_uri
 	wget -O "bun.zip" "$bun_uri"
 	unzip -o "bun.zip"
+
+	if [ "$1" == "upx" ] || [ "$2" == "upx" ] || [ "$3" == "upx" ]; then
+		wget -O - "https://raw.githubusercontent.com/alxivnov/Bunpine/main/upx/install.sh" | sh
+		upx --best --lzma --force-overwrite -o "bun-$target/$exe_name" "bun-$target/$exe_name"
+		rm "/usr/local/bin/upx"
+	fi
+
 	mv "bun-$target/$exe_name" "/usr/local/bin/$exe_name"
 	rm -r "bun.zip" "bun-$target"
 
