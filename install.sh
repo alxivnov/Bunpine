@@ -5,7 +5,7 @@ GITHUB="https://github.com"
 
 
 if [ "$1" != "skip-glibc" ] && [ "$2" != "skip-glibc" ] && [ $(cat /etc/os-release | grep -c "alpine") -gt 0 ]; then
-	apk add --no-cache gcompat
+	apk add --no-cache gcompat libstdc++
 
 	if [ $(uname -m) == "aarch64" ]; then
 		# AArch64 https://github.com/SatoshiPortal/alpine-pkg-glibc
@@ -17,8 +17,6 @@ if [ "$1" != "skip-glibc" ] && [ "$2" != "skip-glibc" ] && [ $(cat /etc/os-relea
 		# x86-64 https://github.com/sgerrand/alpine-pkg-glibc
 		GLIBC="$GITHUB/sgerrand/alpine-pkg-glibc/releases/download/2.34-r0/glibc-2.34-r0.apk"
 		GLIBC_BIN="$GITHUB/sgerrand/alpine-pkg-glibc/releases/download/2.34-r0/glibc-bin-2.34-r0.apk"
-
-		# apk add libstdc++
 	fi
 
 	# if [ $(apk info | grep -c "glibc") -eq 0 ]; then
