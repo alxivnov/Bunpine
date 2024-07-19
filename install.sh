@@ -15,8 +15,8 @@ if [ "$1" != "skip-glibc" ] && [ "$2" != "skip-glibc" ] && [ $(cat /etc/os-relea
 		# GLIBC_BIN="https://raw.githubusercontent.com/squishyu/alpine-pkg-glibc-aarch64-bin/master/glibc-bin-2.26-r1.apk"
 	else
 		# x86-64 https://github.com/sgerrand/alpine-pkg-glibc
-		GLIBC="$GITHUB/sgerrand/alpine-pkg-glibc/releases/download/2.34-r0/glibc-2.34-r0.apk"
-		GLIBC_BIN="$GITHUB/sgerrand/alpine-pkg-glibc/releases/download/2.34-r0/glibc-bin-2.34-r0.apk"
+		GLIBC="$GITHUB/sgerrand/alpine-pkg-glibc/releases/download/2.35-r1/glibc-2.35-r1.apk"
+		GLIBC_BIN="$GITHUB/sgerrand/alpine-pkg-glibc/releases/download/2.35-r1/glibc-bin-2.35-r1.apk"
 	fi
 
 	# if [ $(apk info | grep -c "glibc") -eq 0 ]; then
