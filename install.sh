@@ -42,6 +42,10 @@ else
 	target="linux-x64"
 fi
 
+if [ -f /etc/alpine-release ]; then
+	target="$target-musl"
+fi
+
 if [ $# -ge 2 ] && ([ $2 == "debug-info" ] || [ $2 == "profile" ]); then
 	target=$target-profile
 	exe_name=$exe_name-profile
