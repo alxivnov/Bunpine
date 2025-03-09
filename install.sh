@@ -4,8 +4,8 @@ GITHUB="https://github.com"
 
 
 
-if [ "$1" != "skip-glibc" ] && [ "$2" != "skip-glibc" ] && [ $(cat /etc/os-release | grep -c "alpine") -gt 0 ]; then
-	apk add --no-cache gcompat libstdc++
+if ([ "$1" == "with-glibc" ] || [ "$2" == "with-glibc" ] || [ "$1" == "only-glibc" ] || [ "$2" == "only-glibc" ]) && [ $(cat /etc/os-release | grep -c "alpine") -gt 0 ]; then
+	apk add --no-cache gcompat #libstdc++
 
 	if [ $(uname -m) == "aarch64" ]; then
 		# AArch64 https://github.com/SatoshiPortal/alpine-pkg-glibc
@@ -67,7 +67,12 @@ else
 	bun_uri=$GITHUB/oven-sh/bun/releases/latest/download/bun-$target.zip
 fi
 
+if [ -e /etc/alpine-release ]; then
+	apk add --no-cache libstdc++
+fi
+
 # if [ $(ls /usr/local/bin | grep -c "$exe_name") -eq 0 ]; then
+if ![ -x $exe_name ]; then
 	echo $bun_uri
 	wget -O "bun.zip" "$bun_uri"
 	unzip -o "bun.zip"
@@ -82,7 +87,7 @@ fi
 	rm -r "bun.zip" "bun-$target"
 
 	ln -s /usr/local/bin/$exe_name /usr/local/bin/$BUNX
-# fi
+fi
 
 
 
