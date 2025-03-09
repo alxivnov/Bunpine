@@ -72,7 +72,7 @@ if [ -e /etc/alpine-release ]; then
 fi
 
 # if [ $(ls /usr/local/bin | grep -c "$exe_name") -eq 0 ]; then
-if ![ -x $exe_name ]; then
+if [ ! -x $exe_name ]; then
 	echo $bun_uri
 	wget -O "bun.zip" "$bun_uri"
 	unzip -o "bun.zip"
