@@ -38,12 +38,16 @@ BUNX=bunx
 
 if [ $(uname -m) == "aarch64" ]; then
 	target="linux-aarch64"
+
+	if [ -f /etc/alpine-release ]; then
+		target="$target-musl"
+	fi
 else
 	target="linux-x64"
-fi
 
-if [ -f /etc/alpine-release ]; then
-	target="$target-musl"
+	if [ -f /etc/alpine-release ]; then
+		target="$target-musl-baseline"
+	fi
 fi
 
 if [ $# -ge 2 ] && ([ $2 == "debug-info" ] || [ $2 == "profile" ]); then
