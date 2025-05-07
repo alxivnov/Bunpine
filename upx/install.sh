@@ -9,7 +9,7 @@ else
 fi
 
 upx_bin=upx
-upx_ver=${1:-"5.0.0"}
+upx_ver=${1:-"5.0.1"}
 upx_dir=upx-$upx_ver-$target
 upx_ext=tar.xz
 upx_zip=$upx_dir.$upx_ext
