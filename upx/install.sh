@@ -2,7 +2,7 @@
 
 GITHUB="https://github.com"
 
-if [ $(uname -m) == "aarch64" ]; then
+if [ $(uname -m) = "aarch64" ]; then
 	target="arm64_linux"
 else
 	target="amd64_linux"

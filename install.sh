@@ -4,10 +4,10 @@ GITHUB="https://github.com"
 
 
 
-if ([ "$1" == "with-glibc" ] || [ "$2" == "with-glibc" ] || [ "$1" == "only-glibc" ] || [ "$2" == "only-glibc" ]) && [ $(cat /etc/os-release | grep -c "alpine") -gt 0 ]; then
+if ([ "$1" = "with-glibc" ] || [ "$2" = "with-glibc" ] || [ "$1" = "only-glibc" ] || [ "$2" = "only-glibc" ]) && [ $(cat /etc/os-release | grep -c "alpine") -gt 0 ]; then
 	apk add --no-cache gcompat #libstdc++
 
-	if [ $(uname -m) == "aarch64" ]; then
+	if [ $(uname -m) = "aarch64" ]; then
 		# AArch64 https://github.com/SatoshiPortal/alpine-pkg-glibc
 		GLIBC="$GITHUB/SatoshiPortal/alpine-pkg-glibc/releases/download/2.33-r0/glibc-2.33-r0-aarch64.apk"
 		GLIBC_BIN="$GITHUB/SatoshiPortal/alpine-pkg-glibc/releases/download/2.33-r0/glibc-bin-2.33-r0-aarch64.apk"
@@ -26,7 +26,7 @@ if ([ "$1" == "with-glibc" ] || [ "$2" == "with-glibc" ] || [ "$1" == "only-glib
 		rm "glibc.apk" "glibc-bin.apk"
 	# fi
 
-	if [ "$1" == "only-glibc" ] || [ "$2" == "only-glibc" ]; then
+	if [ "$1" = "only-glibc" ] || [ "$2" = "only-glibc" ]; then
 		exit 0
 	fi
 fi
@@ -36,7 +36,7 @@ fi
 exe_name=bun
 BUNX=bunx
 
-if [ $(uname -m) == "aarch64" ]; then
+if [ $(uname -m) = "aarch64" ]; then
 	target="linux-aarch64"
 
 	if [ -f /etc/alpine-release ]; then
@@ -50,7 +50,7 @@ else
 	fi
 fi
 
-if [ $# -ge 2 ] && ([ $2 == "debug-info" ] || [ $2 == "profile" ]); then
+if [ $# -ge 2 ] && ([ $2 = "debug-info" ] || [ $2 = "profile" ]); then
 	target=$target-profile
 	exe_name=$exe_name-profile
 	# BUNX=$BUNX-profile
@@ -59,7 +59,7 @@ fi
 
 if [ $# -ge 1 ] && ([ $1 != "" ]); then
 	if [[ $1 != bun-v* ]]; then
-		if [[ $1 == v* ]]; then
+		if [[ $1 = v* ]]; then
 			prefix="bun-"
 		else
 			prefix="bun-v"
@@ -81,7 +81,7 @@ if [ ! -x /usr/local/bin/$exe_name ]; then
 	wget -O "bun.zip" "$bun_uri"
 	unzip -o "bun.zip"
 
-	if [ "$1" == "upx" ] || [ "$2" == "upx" ] || [ "$3" == "upx" ]; then
+	if [ "$1" = "upx" ] || [ "$2" = "upx" ] || [ "$3" = "upx" ]; then
 		wget -O - "https://raw.githubusercontent.com/alxivnov/Bunpine/main/upx/install.sh" | sh
 		upx --best --lzma --force-overwrite -o "bun-$target/$exe_name" "bun-$target/$exe_name"
 		rm "/usr/local/bin/upx"
