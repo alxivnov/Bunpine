@@ -14,6 +14,7 @@ upx_dir=upx-$upx_ver-$target
 upx_ext=tar.xz
 upx_zip=$upx_dir.$upx_ext
 upx_uri=$GITHUB/upx/upx/releases/download/v$upx_ver/$upx_zip
+echo "$upx_uri"
 
 
 # https://github.com/upx/upx
